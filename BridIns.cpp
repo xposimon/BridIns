@@ -68,7 +68,7 @@ class SwitchStmtHandler : public MatchFinder::MatchCallback {
 public:
   virtual void run(const MatchFinder::MatchResult &Result) {
     // Access the matched 'if' statement
-    const clang::SwitchStmtHandler *switchStmt = Result.Nodes.getNodeAs<clang::SwitchStmtHandler>("switchStmt");
+    const clang::SwitchStmt *switchStmt = Result.Nodes.getNodeAs<clang::SwitchStmtHandler>("switchStmt");
     SourceLocation switchStmtLoc;
     if (switchStmt) {
       // Process the 'if' statement here
