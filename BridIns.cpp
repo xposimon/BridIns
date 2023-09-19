@@ -110,6 +110,7 @@ int main(int argc, const char **argv) {
   ForStmtHandler forStmtHandler;
   WhileStmtHandler whileStmtHandler;
   SwitchStmtHandler switchStmtHandler;
+  MainFunctionHandler mainFunctionHandler;
 
   MatchFinder Finder;
 
@@ -118,6 +119,7 @@ int main(int argc, const char **argv) {
   Finder.addMatcher(ForMatcher, &forStmtHandler);
   Finder.addMatcher(WhileMatcher, &whileStmtHandler);
   Finder.addMatcher(SwitchMatcher, &switchStmtHandler);
+  Finder.addMatcher(mainFunctionMatcher, &mainFunctionHandler);
 
   // Run the tool, and let the Finder find matches in the AST
   int result = Tool.run(newFrontendActionFactory(&Finder).get());
