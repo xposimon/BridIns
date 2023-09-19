@@ -31,7 +31,7 @@ public:
     if (ifStmt) {
       // Process the 'if' statement here
       ifStmtLoc = ifStmt->getBeginLoc();
-      llvm::outs() << "Found If at: " << ifStmtLoc.printToString(Result.Context->getSourceManager()) << "\n";
+      llvm::outs() << "[If]" << ifStmtLoc.printToString(Result.Context->getSourceManager()) << "\n";
       //ifStmt->dump();
     }
   }
@@ -46,7 +46,7 @@ public:
     if (forStmt) {
       // Process the 'if' statement here
       forStmtLoc = forStmt->getBeginLoc();
-      llvm::outs() << "Found For loop at: " << forStmtLoc.printToString(Result.Context->getSourceManager()) << "\n";
+      llvm::outs() << "[For]" << forStmtLoc.printToString(Result.Context->getSourceManager()) << "\n";
     }
   }
 };
@@ -59,7 +59,7 @@ public:
     SourceLocation whileStmtLoc;
     if (whileStmt) {
       whileStmtLoc = whileStmt->getBeginLoc();
-      llvm::outs() << "Found While at: " << whileStmtLoc.printToString(Result.Context->getSourceManager()) << "\n";
+      llvm::outs() << "[While]" << whileStmtLoc.printToString(Result.Context->getSourceManager()) << "\n";
     }
   }
 };
@@ -73,7 +73,7 @@ public:
     if (switchStmt) {
       // Process the 'if' statement here
       switchStmtLoc = switchStmt->getBeginLoc();
-      llvm::outs() << "Found If at: " << switchStmtLoc.printToString(Result.Context->getSourceManager()) << "\n";
+      llvm::outs() << "[Switch]" << switchStmtLoc.printToString(Result.Context->getSourceManager()) << "\n";
     }
   }
 };
