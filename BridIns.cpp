@@ -21,6 +21,8 @@ StatementMatcher IfMatcher = ifStmt().bind("ifStmt");
 StatementMatcher ForMatcher = forStmt().bind("forStmt");
 StatementMatcher WhileMatcher = whileStmt().bind("whileStmt");
 StatementMatcher SwitchMatcher = switchStmt().bind("switchStmt");
+DeclarationMatcher mainFunctionMatcher = functionDecl(hasName("main"), isMain()).bind("mainFunc");
+
 
 class IfStmtHandler : public MatchFinder::MatchCallback {
 public:
@@ -77,6 +79,19 @@ public:
     }
   }
 };
+
+class MainFunctionHandler : public MatchFinder::MatchCallback {
+public:
+  virtual void run(const MatchFinder::MatchResult &Result) {
+    const clang::FunctionDecl *mainFunction = Result.Nodes.getNodeAs<clang::FunctionDecl>("mainFunc");
+    SourceLocation mainFuncLoc;
+    if (mainFunction) {
+      mainFuncLoc = mainFunction->getBeginLoc();
+      llvm::outs() << "[Main]" << mainFuncLoc.printToString(Result.Context->getSourceManager()) << "\n";
+    }
+  }
+};
+
 
 int main(int argc, const char **argv) {
   // Create an instance of ClangTool
