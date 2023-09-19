@@ -84,10 +84,11 @@ class MainFunctionHandler : public MatchFinder::MatchCallback {
 public:
   virtual void run(const MatchFinder::MatchResult &Result) {
     const clang::FunctionDecl *mainFunction = Result.Nodes.getNodeAs<clang::FunctionDecl>("mainFunc");
-    SourceLocation mainFuncLoc;
+    SourceLocation mainBeginLoc, mainEndLoc;
     if (mainFunction) {
-      mainFuncLoc = mainFunction->getBeginLoc();
-      llvm::outs() << "[Main]" << mainFuncLoc.printToString(Result.Context->getSourceManager()) << "\n";
+      mainBeginLoc = mainFunction->getBeginLoc();
+      mainEndLoc = mainFunction->getEndLoc();
+      llvm::outs() << "[Main]" << mainBeginLoc.printToString(Result.Context->getSourceManager()) << "|" << mainEndLoc.printToString(Result.Context->getSourceManager()) << "\n";
     }
   }
 };
